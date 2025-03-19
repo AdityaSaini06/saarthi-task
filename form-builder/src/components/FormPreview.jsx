@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormContext } from '../context/FormContext';
+import './FormPreview.css';
 
 const FormPreview = () => {
   const { fields } = useFormContext();
@@ -10,7 +11,7 @@ const FormPreview = () => {
   };
 
   return (
-    <div>
+    <div className="form-preview">
       <h2>Form Preview</h2>
       <form onSubmit={handleSubmit}>
         {fields.map((field) => (

@@ -1,0 +1,41 @@
+.form-builder {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-builder h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-builder button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.form-builder button:hover {
+    background-color: #0056b3;
+}
+
+.form-builder ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.form-builder li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}

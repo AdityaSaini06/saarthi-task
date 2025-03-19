@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { FormProvider } from '../src/context/FormContext';
 import FormBuilder from './components/FormBuilder';

@@ -1,9 +1,10 @@
-    import React, { useEffect } from 'react';
-    import { useFormContext } from '../context/FormContext';
-    import FormField from './FormField';
-    import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useEffect } from 'react';
+import { useFormContext } from '../context/FormContext';
+import FormField from './FormField';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import './FormBuilder.css';
 
-    const FormBuilder = () => {
+const FormBuilder = () => {
     const { fields, addField, saveForm, loadForm, reorderFields } = useFormContext();
 
     useEffect(() => {
@@ -17,35 +18,35 @@
     };
 
     return (
-        <div>
-        <h2>Form Builder</h2>
-        <button onClick={() => addField('text')}>Add Text Field</button>
-        <button onClick={() => addField('number')}>Add Number Field</button>
-        <button onClick={() => addField('date')}>Add Date Field</button>
-        <button onClick={() => addField('checkbox')}>Add Checkbox</button>
+        <div className="form-builder">
+            <h2>Form Builder</h2>
+            <button onClick={() => addField('text')}>Add Text Field</button>
+            <button onClick={() => addField('number')}>Add Number Field</button>
+            <button onClick={() => addField('date')}>Add Date Field</button>
+            <button onClick={() => addField('checkbox')}>Add Checkbox</button>
 
-        <DragDropContext onDragEnd={handleDragEnd}>
-            <Droppable droppableId="fields" direction="vertical">
-            {(provided) => (
-                <ul ref={provided.innerRef} {...provided.droppableProps}>
-                {fields.map((field, index) => (
-                    <Draggable key={field.id} draggableId={field.id.toString()} index={index}>
+            <DragDropContext onDragEnd={handleDragEnd}>
+                <Droppable droppableId="fields" direction="vertical">
                     {(provided) => (
-                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                        <FormField field={field} />
-                        </li>
+                        <ul ref={provided.innerRef} {...provided.droppableProps}>
+                            {fields.map((field, index) => (
+                                <Draggable key={field.id} draggableId={field.id.toString()} index={index}>
+                                    {(provided) => (
+                                        <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                            <FormField field={field} />
+                                        </li>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </ul>
                     )}
-                    </Draggable>
-                ))}
-                {provided.placeholder}
-                </ul>
-            )}
-            </Droppable>
-        </DragDropContext>
+                </Droppable>
+            </DragDropContext>
 
-        <button onClick={saveForm}>Save Form</button>
+            <button onClick={saveForm}>Save Form</button>
         </div>
     );
-    };
+};
 
-    export default FormBuilder;
+export default FormBuilder;

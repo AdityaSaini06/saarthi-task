@@ -1,7 +1,8 @@
-    import React from 'react';
-    import { useFormContext } from '../context/FormContext';
+import React from 'react';
+import { useFormContext } from '../context/FormContext';
+import './FormField.css';
 
-    const FormField = ({ field }) => {
+const FormField = ({ field }) => {
     const { updateField, removeField } = useFormContext();
 
     const handleChange = (e) => {
@@ -9,39 +10,41 @@
     };
 
     return (
-        <div>
-        <input
-            type="text"
-            name="label"
-            value={field.label}
-            placeholder="Field Label"
-            onChange={handleChange}
-        />
-        {field.type === 'checkbox' ? (
+        <div className="form-field">
             <input
-            type="checkbox"
-            name="value"
-            checked={field.value}
-            onChange={(e) => updateField(field.id, { value: e.target.checked })}
+                type="text"
+                name="label"
+                value={field.label}
+                placeholder="Field Label"
+                onChange={handleChange}
             />
-        ) : (
-            <input
-            type={field.type}
-            name="value"
-            value={field.value}
-            placeholder={`Enter ${field.type}`}
-            onChange={handleChange}
-            />
-        )}
-        <input
-            type="checkbox"
-            checked={field.required}
-            onChange={() => updateField(field.id, { required: !field.required })}
-        />
-        <label>Required</label>
-        <button onClick={() => removeField(field.id)}>Remove Field</button>
+            {field.type === 'checkbox' ? (
+                <input
+                    type="checkbox"
+                    name="value"
+                    checked={field.value}
+                    onChange={(e) => updateField(field.id, { value: e.target.checked })}
+                />
+            ) : (
+                <input
+                    type={field.type}
+                    name="value"
+                    value={field.value}
+                    placeholder={`Enter ${field.type}`}
+                    onChange={handleChange}
+                />
+            )}
+            <div>
+                <input
+                    type="checkbox"
+                    checked={field.required}
+                    onChange={() => updateField(field.id, { required: !field.required })}
+                />
+                <label>Required</label>
+            </div>
+            <button onClick={() => removeField(field.id)}>Remove Field</button>
         </div>
     );
-    };
+};
 
-    export default FormField;
+export default FormField;
